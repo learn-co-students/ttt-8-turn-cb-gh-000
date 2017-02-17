@@ -1,1 +1,21 @@
 #!/usr/bin/env ruby
+
+# require_relative '../lib/turn'
+#
+# board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+#
+# puts "Welcome to Tic Tac Toe!"
+# display_board(board)
+# turn(board)
+
+def valid_move?(board, index)
+  if index > 0 || index < 9 && board[index] == "X" || board[index] == "O"
+    return puts true
+  else
+    return puts false
+  end
+end
+
+board = [" ", " ", " ", " ", "X", " ", " ", " ", " "]
+index = -1
+valid_move?(board, index)
