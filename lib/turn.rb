@@ -17,19 +17,15 @@ def valid_move? (board, index)
 end
 
 def turn(board)
-  flag = false
-  while !flag
-    puts "Please enter 1-9:"
-    input = gets.strip
-    index = input_to_index(input)
-    if valid_move?(board, index)
-      move(board, index)
-      display_board(board)
-      flag = true
-    else
-      puts "Invalid move"
-      flag = false
-    end
+  puts "Please enter 1-9:"
+  input = gets.strip
+  index = input_to_index(input)
+  if valid_move?(board, index)
+    move(board, index)
+    display_board(board)
+  else
+    puts "Invalid move"
+    turn(board)
   end
 end
 
