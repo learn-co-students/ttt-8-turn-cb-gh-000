@@ -39,10 +39,10 @@ end
 def turn(board)
   #until index >= 0 && index < 9
     puts "Please enter 1-9:"
-    input = gets
+    input = gets.chomp
     index = input_to_index(input)
     if index < 0 || index > 8
-      return turn(board) 
+      return turn(board)
     end
   if valid_move?(board, index) == true
     move(board, index, symbol = "X")
