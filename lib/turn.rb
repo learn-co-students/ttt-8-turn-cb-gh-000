@@ -36,16 +36,24 @@ def turn(board)
 
   input = gets.strip
   index = input_to_index(input)
-  valid = false
-  stopLoop = false
-  while stopLoop == false
-    if valid_move?(board, index) == true
-        move(board,index)
-        stopLoop = true
-    else
-        puts "Please enter 1-9:"
-    end
+
+  if valid_move?(board, index) == true
+    move(board,index)
+    display_board(board)
+  else
+    turn(board)
+
   end
-  display_board(board)
-  return 0
+  # valid = false
+  # stopLoop = false
+  # while stopLoop == false
+  #   if valid_move?(board, index) == true
+  #       move(board,index)
+  #       stopLoop = true
+  #   else
+  #       puts "Please enter 1-9:"
+  #   end
+  # end
+  # display_board(board)
+  # return 0
 end
