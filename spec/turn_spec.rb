@@ -54,7 +54,7 @@ describe './lib/turn.rb' do
       board = [" ", " ", " ", " ", "X", " ", " ", " ", " "]
 
       index = 0
-      expect(valid_move?(board, index)).to be_truthy
+      expect(valid_move?(board, index)).to be_falsey
 
       index = 4
       expect(valid_move?(board, index)).to be_falsey
