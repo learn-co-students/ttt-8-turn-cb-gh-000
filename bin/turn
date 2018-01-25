@@ -1,1 +1,2 @@
 #!/usr/bin/env ruby
+board = new Array(9," ");
