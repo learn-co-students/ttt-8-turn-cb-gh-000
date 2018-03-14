@@ -27,8 +27,8 @@ def move(board, position, character = "X")
   board[position] = character
 end
 
-def display_board(piece_array)
-  if piece_array.empty?
+def display_board(board)
+  if board.empty?
     puts "   |   |   "
     puts "-----------"
     puts "   |   |   "
@@ -36,11 +36,11 @@ def display_board(piece_array)
     puts "   |   |   "
   end
 
-  puts " #{piece_array[0]} | #{piece_array[1]} | #{piece_array[2]} "
+  puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
-  puts " #{piece_array[3]} | #{piece_array[4]} | #{piece_array[5]} "
+  puts " #{board[3]} | #{board[4]} | #{board[5]} "
   puts "-----------"
-  puts " #{piece_array[6]} | #{piece_array[7]} | #{piece_array[8]} "
+  puts " #{board[6]} | #{board[7]} | #{board[8]} "
 
 end
 
