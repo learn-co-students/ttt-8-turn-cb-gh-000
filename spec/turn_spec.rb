@@ -1,155 +1,65 @@
-require_relative "../lib/turn.rb"
-
-describe './lib/turn.rb' do
-
-  describe '#display_board' do
-    it 'prints arbitrary arrangements of the board' do
-      board = ["X", "X", "X", "X", "O", "O", "X", "O", "O"]
-
-      output = capture_puts{ display_board(board) }
-
-      expect(output).to include(" X | X | X ")
-      expect(output).to include("-----------")
-      expect(output).to include(" X | O | O ")
-      expect(output).to include("-----------")
-      expect(output).to include(" X | O | O ")
+#displays a tic tac toe board, with board spaces passed as an array
+	def display_board(board)
+	  puts " #{board[0]} | #{board[1]} | #{board[2]} "
+	  puts "-----------"
+	  puts " #{board[3]} | #{board[4]} | #{board[5]} "
+	  puts "-----------"
+	  puts " #{board[6]} | #{board[7]} | #{board[8]} "
+	end
 
 
-      board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
+	#coverts a user's place on the board to the index integer
+	def input_to_index(user_input)
+	  index = user_input.to_i
+	  index -= 1
+	  return index
+	end
 
-      output = capture_puts{ display_board(board) }
 
-      expect(output).to include(" X | O | X ")
-      expect(output).to include("-----------")
-      expect(output).to include(" O | X | X ")
-      expect(output).to include("-----------")
-      expect(output).to include(" O | X | O ")
-    end
-  end
+	#checks the number to see if 1) the position is already taken and 2)it is an actual number
+	def valid_move?(board, index)
+	  def position_taken?(array, ind)
+	    if array[ind] == " " || array[ind] == "" || array[ind] == nil
+	      return false
+	    else
+	      return true
+	    end
+	  end
 
-  describe '#input_to_index' do
 
-    it 'converts a user_input to an integer' do
-      user_input = "1"
+	  def on_board?(num)
+	    if num.between?(0, 8) == true
+	      return true
+	    else
+	      return false
+	    end
+	  end
 
-      expect(input_to_index(user_input)).to be_a(Integer)
-    end
 
-    it 'subtracts 1 from the user_input' do
-      user_input = "6"
+	  if (position_taken?(board, index)) == false && (on_board?(index) == true)
+	    return true
+	  else
+	    return false
+	  end
+	end
 
-      expect(input_to_index(user_input)).to be(5)
-    end
 
-    it 'returns -1 for strings without integers' do
-      user_input = "invalid"
+	#Takes a users num and the board, and places the X or O char in that position
+	def move(board, index, character = "X")
+	  board[index] = character
+	  return board
+	end
 
-      expect(input_to_index(user_input)).to be(-1)
-    end
 
-  end
-
-  describe '#valid_move?' do
-    it 'returns true/false based on index' do
-      board = [" ", " ", " ", " ", "X", " ", " ", " ", " "]
-
-      index = 0
-      expect(valid_move?(board, index)).to be_truthy
-
-      index = 4
-      expect(valid_move?(board, index)).to be_falsey
-
-      index = -1
-      expect(valid_move?(board, index)).to be_falsey
-    end
-  end
-
-  describe '#move' do
-    it 'allows "X" player in the bottom right and "O" in the top left ' do
-      board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-      move(board, 0, "O")
-      move(board, 8, "X")
-
-      expect(board).to eq(["O", " ", " ", " ", " ", " ", " ", " ", "X"])
-    end
-  end
-
-  describe '#turn' do
-    it 'asks the user for input by printing: "Please enter 1-9:"' do
-      board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-      allow($stdout).to receive(:puts)
-      allow(self).to receive(:gets).and_return("1")
-
-      expect($stdout).to receive(:puts).with("Please enter 1-9:")
-
-      turn(board)
-    end
-
-    it 'gets the user input' do
-      board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-      allow($stdout).to receive(:puts)
-
-      expect(self).to receive(:gets).and_return("1")
-
-      turn(board)
-    end
-
-    it 'calls the input_to_index method' do
-      board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-      allow($stdout).to receive(:puts)
-
-      allow(self).to receive(:gets).and_return("1")
-
-      expect(self).to receive(:input_to_index).and_call_original
-
-      turn(board)
-    end
-
-    it 'validates the input correctly' do
-      board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-      allow($stdout).to receive(:puts)
-
-      expect(self).to receive(:gets).and_return("1")
-      expect(self).to receive(:valid_move?).with(board, 0).and_return(true)
-
-      turn(board)
-    end
-
-    it 'asks for input again after a failed validation' do
-      board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-
-      allow($stdout).to receive(:puts)
-
-      expect(self).to receive(:gets).and_return("invalid")
-      expect(self).to receive(:gets).and_return("1")
-
-      turn(board)
-    end
-
-    it 'makes valid moves' do
-      board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-
-      allow($stdout).to receive(:puts)
-
-      expect(self).to receive(:gets).and_return("1")
-
-      turn(board)
-
-      expect(board).to match_array(["X", " ", " ", " ", " ", " ", " ", " ", " "])
-    end
-
-    it 'displays a correct board after a valid turn' do
-      board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-
-      allow(self).to receive(:gets).and_return("5")
-
-      output = capture_puts{ turn(board) }
-
-      expect(output).to include("   |   |   ")
-      expect(output).to include("-----------")
-      expect(output).to include("   | X |   ")
-      expect(output).to include("-----------")
-      expect(output).to include("   |   |   ")
-    end
-  end
-end
+	#Asks user for a number, check if it is valid, and if it's not, recursively continues to ask for a number
+	def turn (board)
+	  puts "Please enter 1-9:"
+	  num = gets.chomp
+	  index = input_to_index(num)
+	  if valid_move?(board, index) == true
+	    move(board, index)
+	    display_board(board)
+	  else
+	    turn(board)
+	  end
+	end
