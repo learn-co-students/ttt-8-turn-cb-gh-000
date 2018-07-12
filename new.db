@@ -1,0 +1,9 @@
+def valid_move?(board, index)
+  index.beteen(0,8) && !position_taken?(board, index)
+end
+
+def position_taken?(board, index)
+  board[index] != " " # true if filled; false if empty
+end
+
+display_board()
