@@ -1,7 +1,15 @@
+def display_board(board)
+  puts(" #{board[0]} | #{board[1]} | #{board[2]} ")
+  puts("-----------")
+  puts(" #{board[3]} | #{board[4]} | #{board[5]} ")
+  puts("-----------")
+  puts(" #{board[6]} | #{board[7]} | #{board[8]} ")
+end
+
 def turn(board)
   puts "Please enter 1-9:"
   user_input = gets.strip
-  index = input_to_index(user_input) - 1
+  index = input_to_index(user_input)
   valid = valid_move?(board, index)
   if valid == true
     move(board, index, "X")
@@ -11,11 +19,11 @@ def turn(board)
 end
 
 def input_to_index(user_input)
-  index = user_input.to_i
+  index = user_input.to_i - 1
   return index
 end
 
-def valid_move(board, index)
+def valid_move?(board, index)
   if index > 9 || index < 0
     return false
   else
@@ -38,12 +46,4 @@ end
 def move(board, index, symbol)
   board[index] = symbol
   display_board(board)
-end
-
-def display_board(board)
-  puts(" #{board[0]} | #{board[1]} | #{board[2]} ")
-  puts("-----------")
-  puts(" #{board[3]} | #{board[4]} | #{board[5]} ")
-  puts("-----------")
-  puts(" #{board[6]} | #{board[7]} | #{board[8]} ")
 end
