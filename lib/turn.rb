@@ -32,7 +32,8 @@ def turn(board)
   index = nil
   while !index || !valid_move?(board, index) do
     puts "Please enter 1-9:"
-    index = input_to_index(gets.strip)
+    yy=gets.strip
+    index = input_to_index(yy)
   end
     move(board, index)
     display_board(board)
