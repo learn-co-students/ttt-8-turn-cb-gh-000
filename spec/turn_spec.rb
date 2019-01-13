@@ -144,7 +144,7 @@ describe './lib/turn.rb' do
       allow(self).to receive(:gets).and_return("5")
 
       output = capture_puts{ turn(board) }
-
+      # puts output
       expect(output).to include("   |   |   ")
       expect(output).to include("-----------")
       expect(output).to include("   | X |   ")

@@ -1,1 +1,15 @@
 #!/usr/bin/env ruby
+require_relative "../lib/turn.rb"
+
+board=[" "," "," "," "," "," "," "," "," "]
+
+puts "welcome to Tic Tac Toe!"
+counter=1
+loop do
+  turn(board)
+  if counter>8
+      display_board(board)
+      break
+  end
+  counter+=1
+end
