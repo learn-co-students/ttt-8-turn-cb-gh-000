@@ -139,7 +139,7 @@ describe './lib/turn.rb' do
     end
 
     it 'displays a correct board after a valid turn' do
-      board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+      board = [" ", " ", " ", " ", "X", " ", " ", " ", " "]
 
       allow(self).to receive(:gets).and_return("5")
 
