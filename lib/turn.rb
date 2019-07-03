@@ -7,8 +7,7 @@ def display_board(board)
 end
 
 def input_to_index(input)
-  input = input.to_i
-  input - 1
+  input.to_i - 1
 end
 
 def valid_move?(board, index)
@@ -37,4 +36,12 @@ def turn(board)
     turn(board)
   end
   display_board(board)
+end
+
+def play(board)
+  i=0
+  while i<9
+    turn(board)
+    i+=1
+  end
 end
