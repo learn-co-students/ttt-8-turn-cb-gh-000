@@ -1,1 +1,10 @@
 #!/usr/bin/env ruby
+# include the turn file
+require_relative "../lib/turn"
+# generate an empty board array
+board = [ " "," "," ",
+          " "," "," ",
+          " "," "," "]
+# welcome the user
+puts "Welcome to tic-tac-toe"
+display_board(board)
