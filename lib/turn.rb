@@ -28,8 +28,7 @@ def turn(board)
   if entry.between?(0, 8) && valid_move?(board, entry)
     move(board, entry)
   else
-    puts "Please enter 1-9:"
-    entry = input_to_index(gets.chomp)
+    turn(board)
   end
   display_board(board)
 end
