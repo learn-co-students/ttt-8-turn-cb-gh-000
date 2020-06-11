@@ -1,1 +1,2 @@
+require_relative "../lib/turn.rb"
 #!/usr/bin/env ruby
