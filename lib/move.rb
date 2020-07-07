@@ -1,6 +1,6 @@
-def move (board=["X"," "," "," "," "," "," "," "," "],index=0,input="X")
+def move (board=["X"," "," "," "," "," "," "," "," "],index=0,inputt="X")
   if valid_move?(board,index)
-    board[index]=input
+    board[index]=inputt
     return true
   else
     return false
