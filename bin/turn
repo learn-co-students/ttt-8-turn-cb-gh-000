@@ -1,1 +1,18 @@
 #!/usr/bin/env ruby
+require_relative "../lib/turn.rb"
+require_relative "../lib/display_board.rb"
+board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+
+puts "Welcome to Tic Tac Toe!"
+
+display_board(board)
+
+turn(board)
+turn(board)
+turn(board)
+turn(board)
+turn(board)
+turn(board)
+turn(board)
+turn(board)
+turn(board)
